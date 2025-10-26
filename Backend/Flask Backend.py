@@ -8,17 +8,24 @@ import bcrypt
 from datetime import datetime, timezone
 from bson.objectid import ObjectId
 
-# Load environment variables from .env file
-# load_dotenv() # Disabled for testing
+from dotenv import load_dotenv
+from pathlib import Path
 
-# Initialize Flask app
+# ---------- Load .env from Root Folder ----------
+BASE_DIR = Path(__file__).resolve().parents[1]   # go to mindtrack-main
+ENV_PATH = BASE_DIR / ".env"
+load_dotenv(ENV_PATH)
+
 app = Flask(__name__)
 
-# Load configurations for testing
-# WARNING: Hardcoding keys is insecure and only for quick testing.
-# DO NOT use this in production. Replace with your actual values.
-app.config["SECRET_KEY"] = "your-very-random-secret-key-for-testing"
-app.config["MONGO_URI"] = "mongodb+srv://anantkhandelwal3_db_user:ORkE0ClXSeG2XYtl@cluster0.e5jjufr.mongodb.net/?appName=Cluster0"
+# ---------- Read Safe Env Variables ----------
+app.secret_key = os.environ.get("SECRET_KEY")
+if not app.secret_key:
+    raise RuntimeError("SECRET_KEY environment variable missing!")
+
+MONGODB_URI = os.environ.get("MONGODB_URI")
+if not MONGODB_URI:
+    raise RuntimeError("MONGODB_URI environment variable missing!")
 
 # Setup MongoDB connection
 try:

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Input Mood - MindTrack</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 flex items-center justify-center h-screen">
+
+<div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold mb-4 text-gray-700">Today's Mood</h1>
+    <form method="POST" class="space-y-4">
+        <select name="mood" required class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-purple-400 text-center text-xl">
+            {% for m in moods_options %}
+                <option value="{{ m.emoji }}">{{ m.emoji }} {{ m.text }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg shadow">Submit Mood</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}" class="text-blue-600 hover:underline mt-4 inline-block">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

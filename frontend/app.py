@@ -15,9 +15,9 @@ load_dotenv(ENV_PATH)
 app = Flask(__name__)
 
 # ---------- Read Safe Env Variables ----------
-app.secret_key = os.environ.get("FLASK_SECRET_KEY")
+app.secret_key = os.environ.get("SECRET_KEY")
 if not app.secret_key:
-    raise RuntimeError("FLASK_SECRET_KEY environment variable missing!")
+    raise RuntimeError("SECRET_KEY environment variable missing!")
 
 MONGODB_URI = os.environ.get("MONGODB_URI")
 if not MONGODB_URI:

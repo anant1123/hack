@@ -1,0 +1,11 @@
+# Inferred dependencies for anant1123/hack
+Flask
+pymongo
+bcrypt
+huggingface-hub
+
+# Optional / environment helpers (only if you use them)
+python-dotenv>=1.0.0    # if you load environment variables from a .env file
+dnspython>=2.0.0        # may be required for mongodb+srv URIs
+
+gunicorn

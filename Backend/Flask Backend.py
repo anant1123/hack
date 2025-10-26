@@ -24,7 +24,7 @@ app.config["MONGO_URI"] = "mongodb+srv://anantkhandelwal3_db_user:ORkE0ClXSeG2XY
 try:
     client = pymongo.MongoClient(app.config["MONGO_URI"])
     # Specify the database name
-    db = client.mindtrack_db 
+    db = client.mindtrack
     users_collection = db.users
     habits_collection = db.habits
     entries_collection = db.entries
